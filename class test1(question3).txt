@@ -1,0 +1,47 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class LCMGCDCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the value of n: ");
+        int n = scanner.nextInt();
+
+       
+        int[] numbers = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Number " + (i + 1) + ": ");
+            numbers[i] = scanner.nextInt();
+        }
+
+      
+        BigInteger lcm = calculateLCM(numbers);
+        BigInteger gcd = calculateGCD(numbers);
+
+        System.out.println("LCM = " + lcm);
+        System.out.println("GCD = " + gcd);
+
+        scanner.close();
+    }
+
+
+    private static BigInteger calculateLCM(int[] numbers) {
+        BigInteger lcm = BigInteger.valueOf(numbers[0]);
+        for (int i = 1; i < numbers.length; i++) {
+            BigInteger currentNumber = BigInteger.valueOf(numbers[i]);
+            lcm = lcm.multiply(currentNumber).divide(lcm.gcd(currentNumber));
+        }
+        return lcm;
+    }
+
+  
+    private static BigInteger calculateGCD(int[] numbers) {
+        BigInteger gcd = BigInteger.valueOf(numbers[0]);
+        for (int i = 1; i < numbers.length; i++) {
+            BigInteger currentNumber = BigInteger.valueOf(numbers[i]);
+            gcd = gcd.gcd(currentNumber);
+        }
+        return gcd;
+    }
+}

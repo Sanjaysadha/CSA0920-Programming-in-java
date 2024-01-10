@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class DecimalToBinaryOctalConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a decimal number: ");
+        int decimalNumber = scanner.nextInt();
+
+        String binaryEquivalent = convertToBinary(decimalNumber);
+        String octalEquivalent = convertToOctal(decimalNumber);
+
+        System.out.println("Binary equivalent: " + binaryEquivalent);
+        System.out.println("Octal equivalent: " + octalEquivalent);
+
+        scanner.close();
+    }
+    static String convertToBinary(int decimalNumber) {
+        StringBuilder binary = new StringBuilder();
+
+        while (decimalNumber > 0) {
+            int remainder = decimalNumber % 2;
+            binary.insert(0, remainder);
+            decimalNumber /= 2;
+        }
+
+        return binary.toString();
+    }
+    static String convertToOctal(int decimalNumber) {
+        StringBuilder octal = new StringBuilder();
+
+        while (decimalNumber > 0) {
+            int remainder = decimalNumber % 8;
+            octal.insert(0, remainder);
+            decimalNumber /= 8;
+        }
+
+        return octal.toString();
+    }
+}
